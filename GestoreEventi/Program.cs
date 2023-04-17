@@ -1,8 +1,10 @@
 ﻿namespace GestoreEventi
 {
     internal class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        try
         {
             // Chiediamo all'utente di inserire i dati per un nuovo evento
             Console.WriteLine("Inserisci il titolo dell'evento:");
@@ -32,9 +34,15 @@
                     Console.WriteLine("Prenotazione effettuata con successo");
                     Console.WriteLine($"Posti prenotati: {nuovoEvento.PostiPrenotati}, posti disponibili: {nuovoEvento.PostiDisponibili}");
                 }
-                catch (Exception ex)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
+                    continue; // chiediamo nuovamente l'input
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Si è verificato un errore durante la prenotazione dei posti: " + ex.Message);
+                    break; // usciamo dal ciclo while
                 }
 
                 Console.WriteLine("Vuoi prenotare altri posti? (si/no)");
@@ -56,14 +64,25 @@
                     Console.WriteLine("Disdetta effettuata con successo");
                     Console.WriteLine($"Posti prenotati: {nuovoEvento.PostiPrenotati}, posti disponibili: {nuovoEvento.PostiDisponibili}");
                 }
-                catch (Exception ex)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
+                    continue; // chiediamo nuovamente l'input
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Si è verificato un errore durante la disdetta dei posti: " + ex.Message);
+                    break; // usciamo dal ciclo while
                 }
 
                 Console.WriteLine("Vuoi disdire altri posti? (si/no)");
                 risposta = Console.ReadLine();
             }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Si è verificato un errore: " + ex.Message);
+        }
     }
+}
 }

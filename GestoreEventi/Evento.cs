@@ -31,11 +31,26 @@ namespace GestoreEventi
             get { return data; }
             set
             {
-                if (value < DateTime.Now.Date)
+                bool dataValida = false;
+
+                while (!dataValida)
                 {
-                    throw new ArgumentException("La data non può essere passata");
+                    try
+                    {
+                        if (value < DateTime.Now.Date)
+                        {
+                            throw new ArgumentException("La data non può essere passata");
+                        }
+                        data = value;
+                        dataValida = true;
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine("Inserisci una nuova data (formato dd/MM/yyyy):");
+                        value = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+                    }
                 }
-                data = value;
             }
         }
 
@@ -51,13 +66,29 @@ namespace GestoreEventi
 
         public Evento(string titolo, DateTime data, int capienzaMassima)
         {
+
             Titolo = titolo;
             Data = data;
-            if (capienzaMassima <= 0)
+            bool capienzaValida = false;
+
+            while (!capienzaValida)
             {
-                throw new ArgumentException("La capienza massima deve essere positiva");
+                try
+                {
+                    if (capienzaMassima <= 0)
+                    {
+                        throw new ArgumentException("La capienza massima deve essere positiva");
+                    }
+                    this.capienzaMassima = capienzaMassima;
+                    capienzaValida = true;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("La capienza deve essere un numero positivo:");
+                    capienzaMassima = int.Parse(Console.ReadLine());
+                }
             }
-            this.capienzaMassima = capienzaMassima;
             postiPrenotati = 0;
         }
 
@@ -77,7 +108,6 @@ namespace GestoreEventi
             }
             postiPrenotati += numPosti;
         }
-
         public void DisdiciPosti(int numPosti)
         {
             if (Data < DateTime.Now.Date)
