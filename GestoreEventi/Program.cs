@@ -28,6 +28,8 @@
 
                 Console.WriteLine("1 -> creare un gruppo di eventi e aggiungere eventi");
                 Console.WriteLine("2 -> guardare la lista di eventi esistenti");
+                Console.WriteLine("3 -> svuota lista eventi");
+                Console.WriteLine("4 -> cerca eventi per data");
 
                 Console.WriteLine("Se invece vuoi uscire dal programma basta digitare 0 \n");
 
@@ -48,7 +50,7 @@
                         Console.WriteLine("-- CREAZIONE DI UN NUOVO GRUPPO EVENTO --");
                         Console.WriteLine("Inserisci il nome del nuovo gruppo evento:");
                         string nomeGruppo = Console.ReadLine();
-                        nuovoGruppoEvento = new ProgrammaEventi(nomeGruppo);
+                        GruppoEvento = new ProgrammaEventi(nomeGruppo);
 
                         Console.WriteLine("Inserisci il numero di eventi da creare:");
                         int numEventi = int.Parse(Console.ReadLine());
@@ -135,7 +137,7 @@
 
                                     Console.WriteLine("L'evento è stato salvato con successo!");
                                     Evento nuovo_evento = new Evento(nuovoEvento.Titolo, nuovoEvento.Data, nuovoEvento.CapienzaMassima);
-                                    nuovoGruppoEvento.AggiungiEvento(nuovo_evento);
+                                    GruppoEvento.AggiungiEvento(nuovo_evento);
 
                             }
 
@@ -151,12 +153,6 @@
                     case 2:
                         Console.WriteLine("-- LISTA EVENTI --");
 
-                            // Stampare tutti gli eventi in una certa data
-                            DateTime dataRicerca = new DateTime(2023, 4, 19);
-                            List<Evento> eventiInData = GruppoEvento.EventiInData(dataRicerca);
-                            string rappresentazioneEventiInData = ProgrammaEventi.RappresentazioneInStringa(eventiInData);
-                            Console.WriteLine("Eventi in data " + dataRicerca.ToShortDateString() + ":\n" + rappresentazioneEventiInData);
-
                             // Stampare il numero totale di eventi nel programma
                             int numeroEventi = GruppoEvento.NumeroEventi();
                             Console.WriteLine("Numero totale di eventi: " + numeroEventi);
@@ -167,7 +163,27 @@
 
 
                             break;
-                      
+
+                    case 3:
+                        Console.WriteLine("-- SVUOTA LISTA --");
+
+                            GruppoEvento.SvuotaEventi();
+                            Console.WriteLine("la lista eventi è stata svuotata con successo!");
+
+                        break;
+
+                    case 4:
+                        Console.WriteLine("-- RICERCA EVENTI PER DATA --");
+                        Console.WriteLine("Inserisci la data:");
+                        DateTime inputData = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+
+                        DateTime dataRicerca = inputData;
+                            List<Evento> eventiInData = GruppoEvento.EventiInData(dataRicerca);
+                            string rappresentazioneEventiInData = ProgrammaEventi.RappresentazioneInStringa(eventiInData);
+                            Console.WriteLine("Eventi in data " + dataRicerca.ToShortDateString() + ":\n" + rappresentazioneEventiInData);
+
+                        break;
+
 
 
 
