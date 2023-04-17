@@ -85,7 +85,7 @@ namespace GestoreEventi
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    Console.WriteLine("La capienza deve essere un numero positivo:");
+                    Console.Write("Inserisci nuovamente la capienza massima:");
                     capienzaMassima = int.Parse(Console.ReadLine());
                 }
             }

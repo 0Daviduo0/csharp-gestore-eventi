@@ -42,7 +42,7 @@
                 catch (Exception ex)
                 {
                     Console.WriteLine("Si è verificato un errore durante la prenotazione dei posti: " + ex.Message);
-                    break; // usciamo dal ciclo while
+                    continue;
                 }
 
                 Console.WriteLine("Vuoi prenotare altri posti? (si/no)");
@@ -78,7 +78,13 @@
                 Console.WriteLine("Vuoi disdire altri posti? (si/no)");
                 risposta = Console.ReadLine();
             }
-        }
+
+                Console.WriteLine("Riassunto evento:");
+                Console.WriteLine($"Titolo: {nuovoEvento.Titolo}");
+                Console.WriteLine($"Data: {nuovoEvento.Data.ToString("dd/MM/yyyy")}");
+                Console.WriteLine($"Posti prenotati: {nuovoEvento.PostiPrenotati}");
+                Console.WriteLine($"Posti disponibili: {nuovoEvento.PostiDisponibili}");
+            }
         catch (Exception ex)
         {
             Console.WriteLine("Si è verificato un errore: " + ex.Message);
