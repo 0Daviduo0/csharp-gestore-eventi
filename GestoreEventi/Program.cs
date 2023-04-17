@@ -7,7 +7,7 @@
 
             // Creazione del programma eventi
             ProgrammaEventi GruppoEvento = new ProgrammaEventi("Evento Assurdo");
-            ProgrammaEventi nuovoGruppoEvento = null;
+            //ProgrammaEventi nuovoGruppoEvento = null;
 
 
             // Creazione degli eventi
