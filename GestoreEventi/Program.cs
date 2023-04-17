@@ -159,7 +159,7 @@
 
                             // Stampa del programma completo di eventi
                             Console.WriteLine(GruppoEvento);
-                            Console.WriteLine(nuovoGruppoEvento);
+                            //Console.WriteLine(nuovoGruppoEvento);
 
 
                             break;
