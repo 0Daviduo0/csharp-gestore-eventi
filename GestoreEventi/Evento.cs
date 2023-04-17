@@ -54,6 +54,11 @@ namespace GestoreEventi
             }
         }
 
+        public int CapienzaMassima
+        {
+            get { return capienzaMassima; }
+        }
+
         public int PostiDisponibili
         {
             get { return capienzaMassima - postiPrenotati; }
